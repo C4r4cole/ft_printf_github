@@ -6,7 +6,7 @@
 #    By: fmoulin <fmoulin@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/26 11:07:46 by fmoulin           #+#    #+#              #
-#    Updated: 2025/05/13 20:04:42 by fmoulin          ###   ########.fr        #
+#    Updated: 2025/05/14 16:09:09 by fmoulin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME	= libftprintf.a
 
 SRC_DIR1 = ../libft
 
-SRCS	= $(wildcard $(SRC_DIR1)/*.c) ft_printf.c
+SRCS	= $(wildcard $(SRC_DIR1)/*.c) ft_printf.c ft_is_c.c ft_is_s.c ft_is_d.c
 
 INC = ${SRC_DIR1}/libft.h
 

@@ -1,30 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libftprintf.h                                      :+:      :+:    :+:   */
+/*   ft_is_s.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmoulin <fmoulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/28 09:12:46 by fmoulin           #+#    #+#             */
-/*   Updated: 2025/05/14 16:08:55 by fmoulin          ###   ########.fr       */
+/*   Created: 2025/05/14 16:01:17 by fmoulin           #+#    #+#             */
+/*   Updated: 2025/05/14 16:02:58 by fmoulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFTPRINTF_H
-# define LIBFTPRINTF_H
+#include "../libft/libft.h"
+#include "libftprintf.h"
 
-# define FT_INT_MAX 2147483647
-# define FT_INT_MIN -2147483648
-# include <unistd.h>
-# include <stdlib.h>
-# include <string.h>
-# include <stddef.h>
-# include <ctype.h>
-# include <stdarg.h>
-
-int	ft_printf(const char *format, ...);
-void	ft_is_c(va_list args);
-void	ft_is_s(va_list args);
-void	ft_is_d(va_list args);
-
-#endif
+void	ft_is_s(va_list args)
+{
+	int	j;
+	
+	char *res = va_arg(args, char *);
+	j = 0;
+	while (res[j])
+	{
+		write(1, &res[j], 1);
+		j++;
+	}
+}
