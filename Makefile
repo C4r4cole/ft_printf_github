@@ -6,43 +6,55 @@
 #    By: fmoulin <fmoulin@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/26 11:07:46 by fmoulin           #+#    #+#              #
-#    Updated: 2025/05/14 16:09:09 by fmoulin          ###   ########.fr        #
+#    Updated: 2025/05/15 18:28:56 by fmoulin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	= libftprintf.a
+PROG	= a.out
 
-SRC_DIR1 = ../libft
+LIBFT_DIR = ./libft
+OBJ_DIR = ./objects
 
-SRCS	= $(wildcard $(SRC_DIR1)/*.c) ft_printf.c ft_is_c.c ft_is_s.c ft_is_d.c
+SRCS	= main.c ft_printf.c ft_is_c.c ft_is_s.c ft_is_p.c ft_is_d_i.c ft_is_u.c ft_is_x.c
 
-INC = ${SRC_DIR1}/libft.h
+INC = -I${LIBFT_DIR}
 
-OBJS	= ${SRCS:.c=.o}
+OBJS = ${addprefix ${OBJ_DIR}/, ${SRCS:.c=.o}}
 
 CC	= cc
-
 AR 	= ar -rc
+RM	= rm -rf
 
-RM	= rm -f
+CFLAGS	= -Wall -Wextra -Werror ${INC}
 
-CFLAGS	= -Wall -Wextra -Werror -g3
+all: ${NAME} ${PROG}
 
-.c.o:
-		${CC} ${CFLAGS} -I ${INC} -c $< -o ${<:.c=.o}
+${NAME} : ${OBJS}
+	${MAKE} -C ${LIBFT_DIR}
+	cp ${LIBFT_DIR}/libft.a ./
+	mv libft.a ${NAME}
+	${AR} ${NAME} ${OBJS}
 
-all:		${NAME}
+${PROG} : ${NAME}
+	@${CC} ${CFLAGS} ${OBJS} -L. -lftprintf -o ${PROG}
 
-${NAME}:	${OBJS}
-		${AR} -o ${NAME} ${OBJS}
+${OBJ_DIR}/%.o: %.c | ${OBJ_DIR}
+	${CC} ${CFLAGS} -c $< -o $@
+
+${OBJ_DIR} :
+	@mkdir -p ${OBJ_DIR}
 
 clean:
-		${RM} ${OBJS}
+	${RM} ${OBJ_DIR}
 
 fclean:		clean
 		${RM} ${NAME}
 
-re:		fclean
-		make
+re:	fclean all
 
-.PHONY:		all clean fclean re bonus
+go: all
+	@./${PROG}
+	@${RM} ${PROG}
+ 
+.PHONY:		all clean fclean re go

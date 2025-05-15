@@ -6,7 +6,7 @@
 /*   By: fmoulin <fmoulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 09:12:46 by fmoulin           #+#    #+#             */
-/*   Updated: 2025/05/14 16:08:55 by fmoulin          ###   ########.fr       */
+/*   Updated: 2025/05/15 18:28:35 by fmoulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,13 @@
 # include <ctype.h>
 # include <stdarg.h>
 
-int	ft_printf(const char *format, ...);
+int		main(void);
+int		ft_printf(const char *format, ...);
 void	ft_is_c(va_list args);
 void	ft_is_s(va_list args);
-void	ft_is_d(va_list args);
+void	ft_is_p(va_list args);
+void	ft_is_d_i(va_list args);
+void	ft_is_u(va_list args);
+void	ft_is_x(va_list args);
 
 #endif

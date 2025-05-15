@@ -1,28 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_is_s.c                                          :+:      :+:    :+:   */
+/*   ft_is_u.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmoulin <fmoulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/14 16:01:17 by fmoulin           #+#    #+#             */
-/*   Updated: 2025/05/15 16:40:55 by fmoulin          ###   ########.fr       */
+/*   Created: 2025/05/14 16:05:51 by fmoulin           #+#    #+#             */
+/*   Updated: 2025/05/15 17:43:53 by fmoulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "libftprintf.h"
 
-void	ft_is_s(va_list args)
+void ft_putnbr_u(unsigned int nbr)
 {
-	int		i;
-	char	*res;
-
-	res = va_arg(args, char *);
-	i = 0;
-	while (res[i])
+	if (nbr > 9)
 	{
-		write(1, &res[i], 1);
-		i++;
+		ft_putnbr_u(nbr / 10);
 	}
+	ft_putchar_fd(nbr % 10 + '0', 1);
 }
+
+void ft_is_u(va_list args)
+{
+    unsigned int nbr;
+	
+	nbr = va_arg(args, unsigned int);
+    ft_putnbr_u(nbr);
+}
+
+

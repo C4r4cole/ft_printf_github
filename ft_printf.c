@@ -6,23 +6,23 @@
 /*   By: fmoulin <fmoulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 19:46:14 by fmoulin           #+#    #+#             */
-/*   Updated: 2025/05/14 16:09:54 by fmoulin          ###   ########.fr       */
+/*   Updated: 2025/05/15 18:28:11 by fmoulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft/libft.h"
+#include "libft.h"
 #include "libftprintf.h"
 
 void	data_type(const char *format, va_list args)
 {
 	int		i;
-	
+
 	i = 0;
 	while (format[i])
 	{
 		if (format[i] == '%')
 		{
-			if(format[i + 1] == 'c')
+			if (format[i + 1] == 'c')
 			{
 				ft_is_c(args);
 				i++;
@@ -32,13 +32,33 @@ void	data_type(const char *format, va_list args)
 				ft_is_s(args);
 				i++;
 			}
-			else if(format[i + 1] == 'd')
+			else if (format[i + 1] == 'p')
 			{
-				ft_is_d(args);
+				ft_is_p(args);
+				i++;
+			}
+			else if (format[i + 1] == 'd')
+			{
+				ft_is_d_i(args);
+				i++;
+			}
+			else if (format[i + 1] == 'i')
+			{
+				ft_is_d_i(args);
+				i++;
+			}
+			else if (format[i + 1] == 'u')
+			{
+				ft_is_u(args);
+				i++;
+			}
+			else if (format[i + 1] == 'x')
+			{
+				ft_is_x(args);
 				i++;
 			}
 			else if (format[i + 1] == '%')
-			{  
+			{
 				ft_putchar_fd('%', 1);
 				i++;
 			}
@@ -58,14 +78,18 @@ void	data_type(const char *format, va_list args)
 int	ft_printf(const char *format, ...)
 {
 	va_list	args;
+
 	va_start(args, format);
 	data_type(format, args);
 	va_end(args);
 	return (0);
 }
 
-int	main(void)
-{
-	ft_printf("c : %c, s : %s, p : %p, d : %d, i : %i, u : %u, x : %x, X : %X, Symbol_percent : %%\n", 'C', "C4r4cole", 6);
-	return (0);
-}
+// int	main(void)
+// {
+// 	char	*str;
+
+// 	ft_printf("c : %c, s : %s, p : %p, d : %d, i : %i, u : %u, x : %x, \
+// 		X : %X, Symbol_percent : %%\n", 'C', "C4r4cole", &str, 6, 12);
+// 	return (0);
+// }
