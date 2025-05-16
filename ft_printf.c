@@ -6,7 +6,7 @@
 /*   By: fmoulin <fmoulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 19:46:14 by fmoulin           #+#    #+#             */
-/*   Updated: 2025/05/15 18:28:11 by fmoulin          ###   ########.fr       */
+/*   Updated: 2025/05/16 13:41:07 by fmoulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,12 @@ void	data_type(const char *format, va_list args)
 			}
 			else if (format[i + 1] == 'x')
 			{
-				ft_is_x(args);
+				ft_is_lowerx(args);
+				i++;
+			}
+			else if (format[i + 1] == 'X')
+			{
+				ft_is_upperx(args);
 				i++;
 			}
 			else if (format[i + 1] == '%')

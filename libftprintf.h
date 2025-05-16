@@ -6,7 +6,7 @@
 /*   By: fmoulin <fmoulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 09:12:46 by fmoulin           #+#    #+#             */
-/*   Updated: 2025/05/15 18:28:35 by fmoulin          ###   ########.fr       */
+/*   Updated: 2025/05/16 13:42:27 by fmoulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	ft_is_s(va_list args);
 void	ft_is_p(va_list args);
 void	ft_is_d_i(va_list args);
 void	ft_is_u(va_list args);
-void	ft_is_x(va_list args);
+void	ft_is_lowerx(va_list args);
+void	ft_is_upperx(va_list args);
 
 #endif

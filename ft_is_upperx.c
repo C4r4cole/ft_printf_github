@@ -1,36 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_is_x.c                                          :+:      :+:    :+:   */
+/*   ft_is_upperx.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmoulin <fmoulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 16:05:51 by fmoulin           #+#    #+#             */
-/*   Updated: 2025/05/15 18:51:51 by fmoulin          ###   ########.fr       */
+/*   Updated: 2025/05/16 13:42:03 by fmoulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "libftprintf.h"
 
-void ft_is_x(va_list args)
+void ft_is_upperx(va_list args)
 {
 	char			*hexa;
-	char			buffer[18];
-	char			*res;
+	char			buffer[17];
 	unsigned long	nbr;
 	int				i;
 
-	i = 17;
-	hexa = "0123456789abcdef";
-	res = va_arg(args, char *);
-	nbr = (unsigned long)res;
-	buffer[17] = '\n';
-	while (i > 1)
+	hexa = "0123456789ABCDEF";
+	nbr = va_arg(args, unsigned int);
+	buffer[16] = '\0';
+	i = 16;
+	if (nbr == 0)
 	{
-		buffer[i] = hexa[nbr % 16];
-		nbr = nbr / 16;
-		i--;
+		buffer[15] = '0';
+		i = 15;
 	}
-	write(1, buffer, 18);
+	else
+	{
+		while (nbr > 0)
+		{
+			buffer[i - 1] = hexa[nbr % 16];
+			nbr = nbr / 16;
+			i--;
+		}
+	}
+	write(1, &buffer[i], 16 - i);
 }

@@ -6,7 +6,7 @@
 #    By: fmoulin <fmoulin@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/26 11:07:46 by fmoulin           #+#    #+#              #
-#    Updated: 2025/05/15 18:28:56 by fmoulin          ###   ########.fr        #
+#    Updated: 2025/05/16 13:46:58 by fmoulin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,8 @@ PROG	= a.out
 LIBFT_DIR = ./libft
 OBJ_DIR = ./objects
 
-SRCS	= main.c ft_printf.c ft_is_c.c ft_is_s.c ft_is_p.c ft_is_d_i.c ft_is_u.c ft_is_x.c
+SRCS	= main.c ft_printf.c ft_is_c.c ft_is_s.c ft_is_p.c ft_is_d_i.c ft_is_u.c ft_is_lowerx.c \
+		ft_is_upperx.c
 
 INC = -I${LIBFT_DIR}
 
@@ -26,7 +27,7 @@ CC	= cc
 AR 	= ar -rc
 RM	= rm -rf
 
-CFLAGS	= -Wall -Wextra -Werror ${INC}
+CFLAGS	= -Wall -Wextra -Werror -g3 ${INC}
 
 all: ${NAME} ${PROG}
 
@@ -46,7 +47,7 @@ ${OBJ_DIR} :
 	@mkdir -p ${OBJ_DIR}
 
 clean:
-	${RM} ${OBJ_DIR}
+	${RM} ${OBJ_DIR} ${LIBFT_DIR}/${OBJ_DIR}
 
 fclean:		clean
 		${RM} ${NAME}
