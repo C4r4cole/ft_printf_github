@@ -6,7 +6,7 @@
 #    By: fmoulin <fmoulin@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/26 11:07:46 by fmoulin           #+#    #+#              #
-#    Updated: 2025/05/16 13:46:58 by fmoulin          ###   ########.fr        #
+#    Updated: 2025/05/16 14:05:09 by fmoulin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,6 +35,7 @@ ${NAME} : ${OBJS}
 	${MAKE} -C ${LIBFT_DIR}
 	cp ${LIBFT_DIR}/libft.a ./
 	mv libft.a ${NAME}
+	${RM} ${LIBFT_DIR}/libft.a
 	${AR} ${NAME} ${OBJS}
 
 ${PROG} : ${NAME}
