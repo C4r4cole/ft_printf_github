@@ -6,18 +6,19 @@
 /*   By: fmoulin <fmoulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 16:05:51 by fmoulin           #+#    #+#             */
-/*   Updated: 2025/05/15 16:40:45 by fmoulin          ###   ########.fr       */
+/*   Updated: 2025/05/16 18:22:04 by fmoulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "libftprintf.h"
+#include "ft_printf.h"
 
-void	ft_is_d_i(va_list args)
+int	ft_is_d_i(va_list args)
 {
 	int		i;
 	char	*itoa_result;
 	int		res;
+	int		len;
 
 	res = va_arg(args, int);
 	i = 0;
@@ -27,4 +28,7 @@ void	ft_is_d_i(va_list args)
 		write(1, &itoa_result[i], 1);
 		i++;
 	}
+	len = ft_strlen(itoa_result);
+	free(itoa_result);
+	return (len);
 }

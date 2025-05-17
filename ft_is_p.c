@@ -6,33 +6,51 @@
 /*   By: fmoulin <fmoulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 16:20:45 by fmoulin           #+#    #+#             */
-/*   Updated: 2025/05/15 16:40:50 by fmoulin          ###   ########.fr       */
+/*   Updated: 2025/05/17 12:39:30 by fmoulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "libftprintf.h"
+#include "ft_printf.h"
 
-void	ft_is_p(va_list args)
+int	ft_is_p(va_list args)
 {
-	int				i;
-	char			*res;
-	char			buffer[18];
+	int				len;
+	int				total_len;
+	char			*buffer;
 	char			*hexa;
 	unsigned long	address;
+	unsigned long	temp;
 
 	hexa = "0123456789abcdef";
-	res = va_arg(args, char *);
-	address = (unsigned long)res;
-	i = 17;
-	buffer[17] = '\n';
-	while (i > 1)
+	address = (unsigned long)va_arg(args, void *);
+	if(!address)
 	{
-		buffer[i] = hexa[address % 16];
-		address = address / 16;
-		i--;
+		write(1, "(nil)", 5);
+		return (5);
 	}
+	temp = address;
+	len = 1;
+	while (temp / 16 != 0)
+	{
+		len++;
+		temp = temp / 16;
+	}
+	total_len = len + 2;
+	buffer = malloc(sizeof(char) * (total_len + 1));
+	if (!buffer)
+		return (0);
+	buffer[total_len] = '\0';
 	buffer[0] = '0';
-	buffer[1] = '1';
-	write(1, buffer, 18);
+	buffer[1] = 'x';
+	while (len + 1 > 1)
+	{
+		buffer[len + 1] = hexa[address % 16];
+		address = address / 16;
+		len--;
+	}
+	write(1, buffer, total_len);
+	free(buffer);
+	return (total_len);
 }
+

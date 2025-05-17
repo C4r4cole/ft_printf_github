@@ -6,14 +6,14 @@
 /*   By: fmoulin <fmoulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 16:05:51 by fmoulin           #+#    #+#             */
-/*   Updated: 2025/05/16 13:40:34 by fmoulin          ###   ########.fr       */
+/*   Updated: 2025/05/16 18:23:05 by fmoulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "libftprintf.h"
+#include "ft_printf.h"
 
-void ft_is_lowerx(va_list args)
+int	ft_is_lowerx(va_list args)
 {
 	char			*hexa;
 	char			buffer[17];
@@ -39,4 +39,5 @@ void ft_is_lowerx(va_list args)
 		}
 	}
 	write(1, &buffer[i], 16 - i);
+	return (16 - i);
 }
